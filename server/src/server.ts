@@ -2,6 +2,7 @@ import express, { response, request } from 'express';
 import cors from 'cors';
 import routes from './routes';
 import path from 'path';
+import {errors} from 'celebrate';
 
 const app = express();
 
@@ -11,7 +12,9 @@ app.use(routes)
 
 app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 
-app.listen(3333)
+app.use(errors());
+
+app.listen(3333);
 
 
 // rota: endereço completo da requisição
